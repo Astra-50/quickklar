@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-junk-removal.jpg";
 
 export const HeroSection = () => {
   const handleWhatsAppContact = () => {
-    window.open("https://wa.me/491234567890?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank");
+    window.open("https://wa.me/4915216251471?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank");
   };
 
   const handleQuoteRequest = () => {

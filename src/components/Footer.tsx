@@ -65,7 +65,7 @@ export const Footer = () => {
                 <Button 
                   variant="whatsapp" 
                   size="sm"
-                  onClick={() => window.open("https://wa.me/491234567890", "_blank")}
+                  onClick={() => window.open("https://wa.me/4915216251471", "_blank")}
                 >
                   <MessageCircle className="w-4 h-4" />
                   WhatsApp
@@ -74,7 +74,7 @@ export const Footer = () => {
                   variant="outline" 
                   size="sm"
                   className="border-white text-white hover:bg-white hover:text-brand-black"
-                  onClick={() => window.open("tel:+491234567890", "_self")}
+                  onClick={() => window.open("tel:+4915216251471", "_self")}
                 >
                   <Phone className="w-4 h-4" />
                   Anrufen
@@ -105,7 +105,7 @@ export const Footer = () => {
                   <Phone className="w-5 h-5 text-brand-red mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium">Telefon</p>
-                    <p className="text-gray-300">+49 123 456 7890</p>
+                    <p className="text-gray-300">+49 1521 6251471</p>
                   </div>
                 </div>
                 
@@ -121,7 +121,7 @@ export const Footer = () => {
                   <Mail className="w-5 h-5 text-brand-red mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium">E-Mail</p>
-                    <p className="text-gray-300">info@quickklar-dortmund.de</p>
+                    <p className="text-gray-300">kontakt@quickklar.de</p>
                   </div>
                 </div>
               </div>
@@ -177,9 +177,9 @@ export const Footer = () => {
               © 2024 QuickKlar Easy Move & Clean. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Impressum</a>
-              <a href="#" className="hover:text-white transition-colors">Datenschutz</a>
-              <a href="#" className="hover:text-white transition-colors">AGB</a>
+              <a href="/impressum" className="hover:text-white transition-colors">Impressum</a>
+              <a href="/datenschutz" className="hover:text-white transition-colors">Datenschutz</a>
+              <a href="/agb" className="hover:text-white transition-colors">AGB</a>
             </div>
           </div>
         </div>

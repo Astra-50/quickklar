@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MessageCircle, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export const ContactFormSection = () => {
   const [formData, setFormData] = useState({
@@ -19,11 +20,33 @@ export const ContactFormSection = () => {
 
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create WhatsApp message
-    const whatsappMessage = `Hallo QuickKlar Team!
+    try {
+      // Store lead in database
+      const { error } = await supabase
+        .from('leads')
+        .insert({
+          name: formData.name,
+          phone: formData.phone,
+          location: formData.location,
+          service: formData.service,
+          message: formData.message,
+          source: 'contact_form'
+        });
+
+      if (error) {
+        console.error('Error storing lead:', error);
+        toast({
+          title: "Fehler",
+          description: "Es gab ein Problem beim Speichern Ihrer Anfrage. Sie werden trotzdem zu WhatsApp weitergeleitet.",
+          variant: "destructive"
+        });
+      }
+
+      // Create WhatsApp message
+      const whatsappMessage = `Hallo QuickKlar Team!
 
 Name: ${formData.name}
 Telefon: ${formData.phone}
@@ -34,13 +57,31 @@ Nachricht: ${formData.message}
 
 Bitte um ein kostenloses Angebot. Vielen Dank!`;
 
-    const whatsappUrl = `https://wa.me/491234567890?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, "_blank");
+      const whatsappUrl = `https://wa.me/4915216251471?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappUrl, "_blank");
 
-    toast({
-      title: "Anfrage gesendet!",
-      description: "Sie werden zu WhatsApp weitergeleitet. Wir melden uns schnell bei Ihnen zurück.",
-    });
+      toast({
+        title: "Anfrage gesendet!",
+        description: "Sie werden zu WhatsApp weitergeleitet. Wir melden uns schnell bei Ihnen zurück.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        phone: "",
+        location: "",
+        service: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast({
+        title: "Fehler",
+        description: "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -151,7 +192,7 @@ Bitte um ein kostenloses Angebot. Vielen Dank!`;
                     type="button"
                     variant="whatsapp"
                     className="h-12"
-                    onClick={() => window.open("https://wa.me/491234567890?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank")}
+                    onClick={() => window.open("https://wa.me/4915216251471?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank")}
                   >
                     <MessageCircle className="w-5 h-5" />
                     Direkt WhatsApp
