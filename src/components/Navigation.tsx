@@ -16,7 +16,7 @@ export const Navigation = () => {
   }, []);
 
   const handleWhatsAppContact = () => {
-    window.open("https://wa.me/491234567890?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank");
+    window.open("https://wa.me/4915123456789?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank");
   };
 
   const scrollToSection = (id: string) => {
@@ -79,20 +79,18 @@ export const Navigation = () => {
           </div>
 
           {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => window.open("tel:+491234567890", "_self")}
-              className={`${
+          <div className="hidden md:flex items-center space-x-3">
+            <a 
+              href="tel:+4915123456789"
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 border ${
                 isScrolled 
-                  ? "border-brand-red text-brand-red hover:bg-brand-red hover:text-white" 
-                  : "border-white text-white hover:bg-white hover:text-brand-black"
+                  ? "border-brand-red text-brand-red hover:bg-brand-red hover:text-white hover:shadow-lg" 
+                  : "border-white text-white hover:bg-white hover:text-brand-black hover:shadow-lg"
               }`}
             >
               <Phone className="w-4 h-4" />
-              Anrufen
-            </Button>
+              +49 151 234 567 89
+            </a>
             <Button 
               variant="whatsapp" 
               size="sm"
@@ -146,15 +144,13 @@ export const Navigation = () => {
               </button>
               
               <div className="pt-4 flex flex-col space-y-2">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => window.open("tel:+491234567890", "_self")}
-                  className="w-full border-brand-red text-brand-red hover:bg-brand-red hover:text-white"
+                <a 
+                  href="tel:+4915123456789"
+                  className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 rounded-md text-sm font-medium border border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all duration-300"
                 >
                   <Phone className="w-4 h-4" />
-                  Anrufen
-                </Button>
+                  +49 151 234 567 89
+                </a>
                 <Button 
                   variant="whatsapp" 
                   size="sm"
