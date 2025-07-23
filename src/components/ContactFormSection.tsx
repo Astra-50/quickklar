@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,8 +25,10 @@ export const ContactFormSection = () => {
     e.preventDefault();
     
     try {
+      console.log('Submitting form data:', formData);
+      
       // Store lead in database
-      const { error } = await supabase
+      const { data: leadData, error: leadError } = await supabase
         .from('leads')
         .insert({
           name: formData.name,
@@ -34,15 +37,42 @@ export const ContactFormSection = () => {
           service: formData.service,
           message: formData.message,
           source: 'contact_form'
-        });
+        })
+        .select()
+        .single();
 
-      if (error) {
-        console.error('Error storing lead:', error);
+      if (leadError) {
+        console.error('Error storing lead:', leadError);
         toast({
-          title: "Fehler",
-          description: "Es gab ein Problem beim Speichern Ihrer Anfrage. Sie werden trotzdem zu WhatsApp weitergeleitet.",
+          title: "Fehler beim Speichern",
+          description: "Die Anfrage konnte nicht gespeichert werden, aber Sie werden zu WhatsApp weitergeleitet.",
           variant: "destructive"
         });
+      } else {
+        console.log('Lead stored successfully:', leadData);
+        
+        // Call the email notification function directly
+        try {
+          const { error: emailError } = await supabase.functions.invoke('send-lead-notification', {
+            body: {
+              name: formData.name,
+              phone: formData.phone,
+              location: formData.location,
+              service: formData.service,
+              message: formData.message,
+              source: 'contact_form',
+              created_at: new Date().toISOString()
+            }
+          });
+
+          if (emailError) {
+            console.error('Error sending email notification:', emailError);
+          } else {
+            console.log('Email notification sent successfully');
+          }
+        } catch (emailError) {
+          console.error('Failed to send email notification:', emailError);
+        }
       }
 
       // Create WhatsApp message
