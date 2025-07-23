@@ -16,7 +16,7 @@ export const Navigation = () => {
   }, []);
 
   const handleWhatsAppContact = () => {
-    window.open("https://wa.me/4915123456789?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank");
+    window.open("https://wa.me/4915216251471?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank");
   };
 
   const scrollToSection = (id: string) => {
@@ -81,7 +81,7 @@ export const Navigation = () => {
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
             <a 
-              href="tel:+4915123456789"
+              href="tel:+4915216251471"
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 border ${
                 isScrolled 
                   ? "border-brand-red text-brand-red hover:bg-brand-red hover:text-white hover:shadow-lg" 
@@ -89,7 +89,7 @@ export const Navigation = () => {
               }`}
             >
               <Phone className="w-4 h-4" />
-              +49 151 234 567 89
+              +49 1521 6251471
             </a>
             <Button 
               variant="whatsapp" 
@@ -145,11 +145,11 @@ export const Navigation = () => {
               
               <div className="pt-4 flex flex-col space-y-2">
                 <a 
-                  href="tel:+4915123456789"
+                  href="tel:+4915216251471"
                   className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 rounded-md text-sm font-medium border border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all duration-300"
                 >
                   <Phone className="w-4 h-4" />
-                  +49 151 234 567 89
+                  +49 1521 6251471
                 </a>
                 <Button 
                   variant="whatsapp" 
