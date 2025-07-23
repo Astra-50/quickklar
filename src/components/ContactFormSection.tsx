@@ -28,7 +28,7 @@ export const ContactFormSection = () => {
       console.log('Submitting form data:', formData);
       
       // Store lead in database
-      const { data: leadData, error: leadError } = await supabase
+      const { error: leadError } = await supabase
         .from('leads')
         .insert({
           name: formData.name,
@@ -37,9 +37,7 @@ export const ContactFormSection = () => {
           service: formData.service,
           message: formData.message,
           source: 'contact_form'
-        })
-        .select()
-        .single();
+        });
 
       if (leadError) {
         console.error('Error storing lead:', leadError);
@@ -49,7 +47,7 @@ export const ContactFormSection = () => {
           variant: "destructive"
         });
       } else {
-        console.log('Lead stored successfully:', leadData);
+        console.log('Lead stored successfully');
         
         // Call the email notification function directly
         try {
