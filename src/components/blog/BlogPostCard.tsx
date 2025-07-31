@@ -12,10 +12,10 @@ interface BlogPost {
   excerpt: string;
   featured_image?: string;
   published_at: string;
-  blog_categories: {
+  blog_categories?: {
     name: string;
     slug: string;
-  };
+  } | null;
 }
 
 interface BlogPostCardProps {
@@ -39,9 +39,11 @@ export const BlogPostCard = ({ post }: BlogPostCardProps) => {
       
       <CardHeader className="pb-2">
         <div className="flex items-center gap-2 mb-2">
-          <Badge variant="secondary">
-            {post.blog_categories.name}
-          </Badge>
+          {post.blog_categories && (
+            <Badge variant="secondary">
+              {post.blog_categories.name}
+            </Badge>
+          )}
           <div className="flex items-center text-sm text-muted-foreground">
             <Calendar className="h-4 w-4 mr-1" />
             {publishedDate}
