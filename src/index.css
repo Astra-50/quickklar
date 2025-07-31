@@ -155,7 +155,7 @@ All colors MUST be HSL.
   }
   
   .blog-content a {
-    @apply text-primary underline hover:text-primary-glow;
+    @apply text-primary underline hover:text-brand-red-dark;
   }
 
   /* Line clamp utility */
