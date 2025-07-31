@@ -20,7 +20,13 @@ export const Navigation = () => {
   };
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    // Check if we're on the home page
+    if (window.location.pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to home page with hash
+      window.location.href = `/#${id}`;
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -33,7 +39,7 @@ export const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => window.location.pathname === '/' ? window.scrollTo({ top: 0, behavior: "smooth" }) : window.location.href = '/'}
               className="text-2xl font-bold transition-colors duration-300"
             >
               <span className={`${isScrolled ? "text-brand-red" : "text-white"}`}>

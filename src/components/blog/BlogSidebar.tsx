@@ -62,11 +62,11 @@ export const BlogSidebar = ({ categories }: BlogSidebarProps) => {
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4" />
-              <span>+49 231 123456</span>
+              <span>+49 1521 6251471</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4" />
-              <span>info@quickklar.de</span>
+              <span>kontakt@quickklar.de</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4" />

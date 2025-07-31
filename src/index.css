@@ -46,6 +46,9 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(var(--brand-red)), hsl(var(--brand-red-dark)));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
     
+    /* Hero button specific gradient for high contrast */
+    --gradient-hero-button: linear-gradient(135deg, hsl(var(--brand-red) / 0.9), hsl(var(--brand-red-dark) / 0.9));
+    
     /* Shadows */
     --shadow-elegant: 0 10px 30px -10px hsl(var(--brand-red) / 0.3);
     --shadow-card: 0 4px 12px -4px hsl(var(--brand-black) / 0.1);
