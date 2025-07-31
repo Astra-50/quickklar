@@ -119,4 +119,50 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Typography improvements */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Blog content styling */
+  .blog-content h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-foreground;
+  }
+  
+  .blog-content h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-foreground;
+  }
+  
+  .blog-content p {
+    @apply mb-4 leading-relaxed text-muted-foreground;
+  }
+  
+  .blog-content ul, .blog-content ol {
+    @apply mb-4 ml-6 space-y-2;
+  }
+  
+  .blog-content li {
+    @apply text-muted-foreground;
+  }
+  
+  .blog-content blockquote {
+    @apply border-l-4 border-primary pl-4 italic my-6 text-muted-foreground;
+  }
+  
+  .blog-content img {
+    @apply rounded-lg shadow-md my-6;
+  }
+  
+  .blog-content a {
+    @apply text-primary underline hover:text-primary-glow;
+  }
+
+  /* Line clamp utility */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }

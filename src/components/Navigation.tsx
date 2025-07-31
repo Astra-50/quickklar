@@ -52,6 +52,14 @@ export const Navigation = () => {
             >
               Leistungen
             </button>
+            <a 
+              href="/blog"
+              className={`font-medium transition-colors duration-300 hover:text-brand-red ${
+                isScrolled ? "text-brand-black" : "text-white"
+              }`}
+            >
+              Blog
+            </a>
             <button 
               onClick={() => scrollToSection("testimonials")}
               className={`font-medium transition-colors duration-300 hover:text-brand-red ${
@@ -124,6 +132,12 @@ export const Navigation = () => {
               >
                 Leistungen
               </button>
+              <a 
+                href="/blog"
+                className="block w-full text-left px-3 py-2 text-brand-black hover:bg-gray-100 rounded-md"
+              >
+                Blog
+              </a>
               <button 
                 onClick={() => scrollToSection("testimonials")}
                 className="block w-full text-left px-3 py-2 text-brand-black hover:bg-gray-100 rounded-md"
