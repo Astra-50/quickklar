@@ -153,7 +153,6 @@ export const Footer = () => {
               © 2024 QuickKlar Easy Move & Clean. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
-              <a href="/blog" className="hover:text-white transition-colors">Blog</a>
               <a href="/impressum" className="hover:text-white transition-colors">Impressum</a>
               <a href="/datenschutz" className="hover:text-white transition-colors">Datenschutz</a>
               <a href="/agb" className="hover:text-white transition-colors">AGB</a>
