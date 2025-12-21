@@ -150,7 +150,7 @@ export const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2024 QuickKlar Easy Move & Clean. Alle Rechte vorbehalten.
+              © 2025 QuickKlar Easy Move & Clean. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
               <a href="/impressum" className="hover:text-white transition-colors">Impressum</a>

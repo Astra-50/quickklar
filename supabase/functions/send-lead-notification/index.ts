@@ -7,6 +7,41 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
+// Rate limiting storage (in-memory, resets on function restart)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 5; // Max 5 requests
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetIn: number } {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  // Clean up expired entries periodically
+  if (Math.random() < 0.1) { // 10% chance to clean up
+    for (const [key, value] of rateLimitMap.entries()) {
+      if (now > value.resetTime) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+  
+  if (!record || now > record.resetTime) {
+    // First request or window expired, create new record
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return { allowed: true, remaining: RATE_LIMIT - 1, resetIn: RATE_LIMIT_WINDOW };
+  }
+  
+  if (record.count >= RATE_LIMIT) {
+    // Rate limit exceeded
+    return { allowed: false, remaining: 0, resetIn: record.resetTime - now };
+  }
+  
+  // Increment counter
+  record.count++;
+  rateLimitMap.set(ip, record);
+  return { allowed: true, remaining: RATE_LIMIT - record.count, resetIn: record.resetTime - now };
+}
+
 // Input validation schema
 const leadSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name is too long"),
@@ -39,6 +74,39 @@ serve(async (req) => {
 
   try {
     console.log('Lead notification function called');
+    
+    // Get client IP for rate limiting
+    const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() 
+      || req.headers.get('x-real-ip') 
+      || 'unknown';
+    
+    console.log('Client IP:', clientIP);
+    
+    // Check rate limit
+    const rateLimitResult = checkRateLimit(clientIP);
+    
+    if (!rateLimitResult.allowed) {
+      console.warn('Rate limit exceeded for IP:', clientIP);
+      const resetMinutes = Math.ceil(rateLimitResult.resetIn / 60000);
+      return new Response(
+        JSON.stringify({ 
+          error: 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.',
+          resetIn: `${resetMinutes} Minuten`
+        }),
+        { 
+          status: 429, 
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json',
+            'X-RateLimit-Limit': RATE_LIMIT.toString(),
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetIn / 1000).toString()
+          } 
+        }
+      );
+    }
+    
+    console.log('Rate limit check passed. Remaining:', rateLimitResult.remaining);
     
     // Parse and validate input
     const rawData = await req.json();
@@ -239,7 +307,12 @@ Quelle: ${source === 'contact_form' ? 'Kontaktformular Website' : source}
       }),
       { 
         status: 200, 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json',
+          'X-RateLimit-Limit': RATE_LIMIT.toString(),
+          'X-RateLimit-Remaining': rateLimitResult.remaining.toString()
+        } 
       }
     );
 
