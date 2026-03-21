@@ -49,11 +49,11 @@ export const Footer = () => {
               <p className="text-gray-300 mb-6 leading-relaxed">Ihr zuverlässiger Partner für Entrümpelung und Umzüge in NRW. Schnell, professionell und zu fairen Preisen.</p>
               
               <div className="flex gap-4 mb-6">
-                <Button variant="whatsapp" size="sm" onClick={() => window.open("https://wa.me/4915216251471", "_blank")}>
+                <Button variant="whatsapp" size="sm" onClick={() => window.open("https://wa.me/4917680774054", "_blank")}>
                   <MessageCircle className="w-4 h-4" />
                   WhatsApp
                 </Button>
-                <Button variant="outline" size="sm" className="border-white text-white hover:bg-white hover:text-brand-black" onClick={() => window.open("tel:+4915216251471", "_self")}>
+                <Button variant="outline" size="sm" className="border-white text-white hover:bg-white hover:text-brand-black" onClick={() => window.open("tel:+4917680774054", "_self")}>
                   <Phone className="w-4 h-4" />
                   Anrufen
                 </Button>
@@ -81,7 +81,7 @@ export const Footer = () => {
                   <Phone className="w-5 h-5 text-brand-red mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium">Telefon</p>
-                    <p className="text-gray-300">+49 1521 6251471</p>
+                    <p className="text-gray-300">+49 176 80774054</p>
                   </div>
                 </div>
                 

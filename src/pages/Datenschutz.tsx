@@ -84,7 +84,7 @@ export default function Datenschutz() {
                   [Straße und Hausnummer]<br />
                   [PLZ und Ort]<br />
                   <br />
-                  Telefon: +49 1521 6251471<br />
+                  Telefon: +49 176 80774054<br />
                   E-Mail: kontakt@quickklar.de
                 </p>
               </div>

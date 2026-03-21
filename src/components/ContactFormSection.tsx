@@ -85,7 +85,7 @@ Nachricht: ${formData.message}
 
 Bitte um ein kostenloses Angebot. Vielen Dank!`;
 
-      const whatsappUrl = `https://wa.me/4915216251471?text=${encodeURIComponent(whatsappMessage)}`;
+      const whatsappUrl = `https://wa.me/4917680774054?text=${encodeURIComponent(whatsappMessage)}`;
       window.open(whatsappUrl, "_blank");
 
       toast({
@@ -220,7 +220,7 @@ Bitte um ein kostenloses Angebot. Vielen Dank!`;
                     type="button"
                     variant="whatsapp"
                     className="h-12"
-                    onClick={() => window.open("https://wa.me/4915216251471?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank")}
+                    onClick={() => window.open("https://wa.me/4917680774054?text=Hallo,%20ich%20brauche%20Hilfe%20bei%20Entrümpelung/Umzug", "_blank")}
                   >
                     <MessageCircle className="w-5 h-5" />
                     Direkt WhatsApp

@@ -41,7 +41,7 @@ export default function Impressum() {
               <h2 className="text-2xl font-semibold text-brand-black mb-4">Kontakt</h2>
               <div className="space-y-2">
                 <p className="text-gray-700">
-                  <strong>Telefon:</strong> +49 1521 6251471<br />
+                  <strong>Telefon:</strong> +49 176 80774054<br />
                   <strong>E-Mail:</strong> kontakt@quickklar.de<br />
                   <strong>Website:</strong> quickklar.de
                 </p>

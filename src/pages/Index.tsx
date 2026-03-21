@@ -5,11 +5,13 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import { ContactFormSection } from "@/components/ContactFormSection";
 import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
+      <FloatingWhatsApp />
       <HeroSection />
       <div id="services">
         <ServicesSection />
